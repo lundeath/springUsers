@@ -5,57 +5,54 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Users Page</title>
+    <title>User Manager</title>
 
-    <style type="text/css">
-        .tg {
+    <style>
+        form {text-align: center}
+        input {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .zui-table {
+            border: solid 1px #DDEEEE;
             border-collapse: collapse;
             border-spacing: 0;
-            border-color: #ccc;
-        }
+            font: normal 13px Arial, sans-serif;
 
-        .tg td {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-            border-color: #ccc;
+
+        }
+        .zui-table thead th {
+            background-color: #DDEFEF;
+            border: solid 1px #DDEEEE;
+            color: #336B6B;
+            padding: 10px;
+            text-align: left;
+            text-shadow: 1px 1px 1px #fff;
+        }
+        .zui-table tbody td {
+            border: solid 1px #DDEEEE;
             color: #333;
-            background-color: #fff;
+            padding: 10px;
+            text-shadow: 1px 1px 1px #fff;
         }
 
-        .tg th {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-            border-color: #ccc;
-            color: #333;
-            background-color: #f0f0f0;
-        }
-
-        .tg .tg-4eph {
-            background-color: #f9f9f9
-        }
     </style>
 </head>
 <body>
-<a href="../../index.jsp">Back to main menu</a>
 
 <br/>
 <br/>
 
-<h1>Users List</h1>
+<h2>Users List</h2>
 
 <c:if test="${!empty listUsers}">
-    <table class="tg">
+    <table class="zui-table">
         <tr>
             <th width="80">ID</th>
             <th width="120">First Name</th>
@@ -83,12 +80,12 @@
 </c:if>
 
 
-<h1>Add User</h1>
+<h2>Add User</h2>
 
 <c:url var="addAction" value="/users/add"/>
 
 <form:form action="${addAction}" commandName="user">
-    <table>
+    <table class="zui-table">
         <c:if test="${!empty user.phone}">
             <tr>
                 <td>
