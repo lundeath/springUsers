@@ -1,0 +1,6 @@
+com\global\dao\UserDaoImpl.class
+com\global\model\User.class
+com\global\service\UserService.class
+com\global\controller\UserController.class
+com\global\service\UserServiceImpl.class
+com\global\dao\UserDao.class
