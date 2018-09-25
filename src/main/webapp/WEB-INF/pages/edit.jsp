@@ -14,6 +14,10 @@
 <head>
     <title>Edit User</title>
     <style type="text/css">
+        .reqMsg {
+            color:red;
+            display: none;
+        }
         .tg {
             border-collapse: collapse;
             border-spacing: 0;
@@ -53,7 +57,7 @@
     </style>
 </head>
 <body>
-<h1>User Details</h1>
+<h3>User Details</h3>
 
 <table class="tg">
     <tr>
@@ -75,88 +79,135 @@
         <td>${user.phone}</td>
     </tr>
 </table>
-
+<br>
+<br>
 <c:url var="editAction" value='/submitChanges/${user.id}'/>
 
-<form:form action="${editAction}" commandName="user">
-    <table class="zui-table">
-        <tr>
-            <td>
-                <form:label path="id">
-                    <spring:message text="ID"/>
-                </form:label>
-            </td>
-            <td>
-                    <%--<form:input path="id" readonly="true" size="8" disabled="true"/>--%>
-                <input type="text" name="id" value="<c:out value='${user.id}'/>" disabled/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="firstName">
-                    <spring:message text="First Name"/>
-                </form:label>
-            </td>
-            <td>
-                <input type="text" name="firstName" value="<c:out value='${user.firstName}'/>"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="lastName">
-                    <spring:message text="Last Name"/>
-                </form:label>
-            </td>
-            <td>
-                <input type="text" name="lastName" value="<c:out value='${user.lastName}'/>"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="age">
-                    <spring:message text="Age"/>
-                </form:label>
-            </td>
-            <td>
-                <input type="text" name="age" value="<c:out value='${user.age}'/>"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="email">
-                    <spring:message text="Email"/>
-                </form:label>
-            </td>
-            <td>
-                <input type="text" name="email" value="<c:out value='${user.email}'/>"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="city">
-                    <spring:message text="City"/>
-                </form:label>
-            </td>
-            <td>
-                <input type="text" name="city" value="<c:out value='${user.city}'/>"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="phone">
-                    <spring:message text="Phone"/>
-                </form:label>
-            </td>
-            <td>
-                <input type="text" name="phone" value="<c:out value='${user.phone}'/>"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="<spring:message text="Submit Changes"/>"/>
-            </td>
-        </tr>
-    </table>
+<div>
+<form:form name="editForm" action="${editAction}" commandName="user" cssClass="tg">
+        First name:<br>
+        <input type="text" name="firstName" placeholder="John" value="<c:out value='${user.firstName}'/>"
+               data-rule="required"><br>
+        <span class="reqMsg" id="firstN">* First name is required</span><br>
+        Last name:<br>
+        <input type="text" name="lastName" placeholder="Stevens" value="<c:out value='${user.lastName}'/>"
+               data-rule="required"><br>
+        <span class="reqMsg" id="lastN">* Last name is required</span><br>
+        Age:<br>
+        <input type="number" name="age" placeholder="25" value="<c:out value='${user.age}'/>"
+               data-rule="required"><br>
+        <span class="reqMsg" id="age">* Age is required</span><br>
+        Email:<br>
+        <input type="text" name="email" placeholder="email@example.com" value="<c:out value='${user.email}'/>"
+               data-rule="required email"><br>
+        <span class="reqMsg" id="email_wrong_format">* Email doesn't match pattern</span><br>
+        <span class="reqMsg" id="email">* Email is required</span><br>
+        City:
+        <select name="city" data-rule="required">
+            <option selected value="<c:out value='${user.city}'/>"><c:out value='${user.city}'/></option>
+            <option value="Lviv">Lviv</option>
+            <option value="Kyiv">Kyiv</option>
+            <option value="Kharkiv">Kharkiv</option>
+        </select><br><br>
+        Phone:<br>
+        <input type="text" name="phone" placeholder="+38(063)1234567"
+               value="<c:out value='${user.phone}'/>" data-rule="required phone length" maxlength="13"><br>
+        <span class="reqMsg" id="phone_wrong_format">* Phone doesn't match pattern</span><br>
+        <span class="reqMsg" id="phone">* Phone is required</span>
+        <span class="reqMsg" id="phone_length">* Phone is too short</span><br>
+        <input type="submit" value="Submit"/><br>
 </form:form>
+</div>
+
 </body>
 </html>
+<script>
+    var element = document.getElementsByName('editForm');
+
+    element[0].addEventListener('submit', validate);
+
+
+    var rules = {
+        required: function (element) {
+            if (element.value !== '') {
+                return true;
+            }
+            return false;
+        },
+        email: function (element) {
+            var reg = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
+            return reg.test(element.value);
+        },
+        phone: function (element) {
+            var reg = /^[\+]\d*$/;
+            return reg.test(element.value);
+        },
+        length: function (element) {
+            return element.value.length > 11;
+        }
+    };
+
+    function showErrors(arr) {
+        for (var i = 0; i < arr.length; i++) {
+            if(arr[i].name === "firstName" && arr[i].error === "required"){
+                document.getElementById("firstN").style.display = "inline";
+            }
+            if(arr[i].name === "lastName" && arr[i].error === "required"){
+                document.getElementById("lastN").style.display = "inline";
+            }
+            if(arr[i].name === "age" && arr[i].error === "required"){
+                document.getElementById("age").style.display = "inline";
+            }
+            if(arr[i].name === "email" && arr[i].error === "required"){
+                document.getElementById("email").style.display = "inline";
+            }
+            if(arr[i].name === "email" && arr[i].error === "email"){
+                document.getElementById("email_wrong_format").style.display = "inline";
+            }
+            if(arr[i].name === "phone" && arr[i].error === "required"){
+                document.getElementById("phone").style.display = "inline";
+            }
+            if(arr[i].name === "phone" && arr[i].error === "phone"){
+                document.getElementById("phone_wrong_format").style.display = "inline";
+            }
+            if(arr[i].name === "phone" && arr[i].error === "length"){
+                document.getElementById("phone_length").style.display = "inline";
+            }
+        }
+    }
+
+    function validate(e) {
+        cleanErrors();
+        var errors = [];
+        var inputs = this.elements;
+
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].type !== 'submit') {
+                var rulesList = inputs[i].dataset.rule;
+                rulesList = rulesList.split(' ');
+
+                for (var j = 0; j < rulesList.length; j++) {
+                    if (rulesList[j] in rules) {
+                        if (!rules[rulesList[j]](inputs[i])) {
+                            errors.push({
+                                name: inputs[i].name,
+                                error: rulesList[j]
+                            })
+                        }
+                    }
+                }
+            }
+        }
+        if (errors.length > 0) {
+            e.preventDefault();
+            showErrors(errors);
+        }
+    }
+
+    function cleanErrors() {
+        var elements = document.getElementsByClassName("reqMsg");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].style.display = "none";
+        }
+    }
+</script>
