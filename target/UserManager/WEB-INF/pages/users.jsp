@@ -79,99 +79,11 @@
     </table>
 </c:if>
 
+<br>
+<br>
+<a href="<c:url value='/register'/>">Add another user</a>
 
-<h2>Add User</h2>
-
-<c:url var="addAction" value="/users/add"/>
-
-<form:form action="${addAction}" commandName="user">
-    <table class="zui-table">
-        <c:if test="${!empty user.phone}">
-            <tr>
-                <td>
-                    <form:label path="id">
-                        <spring:message text="ID"/>
-                    </form:label>
-                </td>
-                <td>
-                    <form:input path="id" readonly="true" size="8" disabled="true"/>
-                    <%--<form:hidden path="id"/>--%>
-                </td>
-            </tr>
-        </c:if>
-        <tr>
-            <td>
-                <form:label path="firstName">
-                    <spring:message text="First Name"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="firstName"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="lastName">
-                    <spring:message text="Last Name"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="lastName"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="age">
-                    <spring:message text="Age"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="age"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="email">
-                    <spring:message text="Email"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="email"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="city">
-                    <spring:message text="City"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="city"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="phone">
-                    <spring:message text="Phone"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="phone"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <c:if test="${!empty user.phone}">
-                    <input type="submit"
-                           value="<spring:message text="Edit User"/>"/>
-                </c:if>
-                <c:if test="${empty user.phone}">
-                    <input type="submit"
-                           value="<spring:message text="Add User"/>"/>
-                </c:if>
-            </td>
-        </tr>
-    </table>
-</form:form>
 </body>
 </html>
+
+

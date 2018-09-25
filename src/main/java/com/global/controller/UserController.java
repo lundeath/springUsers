@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
-    public String listUsers(Model model){
+    public String listUsers(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", this.userService.listUsers());
 
@@ -30,8 +30,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user){
-        if(user.getId() == 0){
+    public String addUser(@ModelAttribute("user") User user) {
+        if (user.getId() == 0) {
             this.userService.addUser(user);
         } else {
             this.userService.updateUser(user);
@@ -41,24 +41,38 @@ public class UserController {
     }
 
     @RequestMapping("/remove/{id}")
-    public String removeUser(@PathVariable("id") int id){
+    public String removeUser(@PathVariable("id") int id) {
         this.userService.removeUser(id);
 
         return "redirect:/users";
     }
 
-    @RequestMapping("edit/{id}")
-    public String editUser(@PathVariable("id") int id, Model model){
+    @RequestMapping(value = "edit/{id}")
+    public String editUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUsers());
 
-        return "users";
+        return "edit";
+    }
+
+    @RequestMapping(value = "/submitChanges", method = RequestMethod.POST)
+    public String submitChanges(@ModelAttribute("user") User user){
+        this.userService.updateUser(user);
+
+        return "redirect:/users";
     }
 
     @RequestMapping("userdata/{id}")
-    public String userData(@PathVariable("id") int id, Model model){
+    public String userData(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
 
         return "userdata";
+    }
+
+    @RequestMapping(value = "register", method = RequestMethod.GET)
+    public String register(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("user", new User());
+
+        return "register";
     }
 }
