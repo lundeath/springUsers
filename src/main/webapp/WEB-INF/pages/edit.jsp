@@ -76,7 +76,7 @@
     </tr>
 </table>
 
-<c:url var="editAction" value='/submitChanges'/>
+<c:url var="editAction" value='/submitChanges/${user.id}'/>
 
 <form:form action="${editAction}" commandName="user">
     <table class="zui-table">
