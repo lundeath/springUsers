@@ -49,16 +49,22 @@ public class UserController {
 
     @RequestMapping(value = "edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model) {
+        User user = this.userService.getUserById(id);
+        System.out.println("edit::: "+user.toString());
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUsers());
-
+        System.out.println("edit::: "+user.toString());
         return "edit";
     }
 
     @RequestMapping(value = "/submitChanges", method = RequestMethod.POST)
-    public String submitChanges(@ModelAttribute("user") User user){
-        this.userService.updateUser(user);
+    public String submitChanges(@PathVariable("id") int id, Model model){
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", this.userService.getUserById(id));
 
+        System.out.println("submit::: "+user.toString());
+        this.userService.updateUser(user);
+        System.out.println("submit::: "+user.toString());
         return "redirect:/users";
     }
 
