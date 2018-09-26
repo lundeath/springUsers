@@ -51,7 +51,6 @@ public class UserController {
     public String editUser(@PathVariable("id") int id, Model model) {
 
         model.addAttribute("user", this.userService.getUserById(id));
-//        model.addAttribute("listUsers", this.userService.listUsers());
 
         return "edit";
     }
@@ -75,5 +74,26 @@ public class UserController {
         model.addAttribute("user", new User());
 
         return "register";
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String loginPage(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("user", new User());
+
+        return "login";
+    }
+    @RequestMapping(value = "/users/login", method = RequestMethod.POST)
+    public String login(@ModelAttribute("user") User user, Model model) {
+        for (User u: this.userService.listUsers()
+             ) {
+            if(u.getFirstName().equals(user.getFirstName()) &&
+                    u.getLastName().equals(user.getLastName())){
+                model.addAttribute("user", new User());
+
+                return "redirect:/users";
+            }
+        }
+        System.out.println("Wrong credentials");
+      return "login";
     }
 }

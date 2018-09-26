@@ -33,7 +33,7 @@
 </head>
 <body>
 <br/>
-<a href="<c:redirect url="/users"/>" target="_blank">Users list</a>
+<a href="<c:redirect url="/login"/>" target="_blank">Users list</a>
 <br/>
 </body>
 </html>

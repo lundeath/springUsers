@@ -1,6 +1,7 @@
 package com.global.service;
 
 import com.global.dao.UserDao;
+import com.global.model.Role;
 import com.global.model.User;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,11 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public List<User> listUsers() {
         return this.userDao.listUsers();
+    }
+
+    @Override
+    @Transactional
+    public Role getRoleById(int id) {
+        return this.userDao.getRoleById(id);
     }
 }

@@ -62,6 +62,7 @@
             <th width="120">Email</th>
             <th width="120">City</th>
             <th width="120">Phone</th>
+            <th width="120">Role</th>
 
         </tr>
         <c:forEach items="${listUsers}" var="user">
@@ -73,6 +74,7 @@
                 <td>${user.email}</td>
                 <td>${user.city}</td>
                 <td>${user.phone}</td>
+                <td>${user.role.name}</td>
                 <td><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
                 <td><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
             </tr>

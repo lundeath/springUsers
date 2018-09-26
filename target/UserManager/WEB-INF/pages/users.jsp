@@ -2,11 +2,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="/WEB-INF/TLDs/custom-tag.tld" prefix="m" %>
 <%@ page session="false" %>
 <html>
 <head>
     <title>User Manager</title>
-
+    <m:today/>
     <style>
         form {text-align: center}
         input {
@@ -61,6 +62,7 @@
             <th width="120">Email</th>
             <th width="120">City</th>
             <th width="120">Phone</th>
+            <th width="120">Role</th>
 
         </tr>
         <c:forEach items="${listUsers}" var="user">
@@ -72,6 +74,7 @@
                 <td>${user.email}</td>
                 <td>${user.city}</td>
                 <td>${user.phone}</td>
+                <td>${user.role.name}</td>
                 <td><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
                 <td><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
             </tr>

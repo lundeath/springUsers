@@ -87,6 +87,7 @@
         <span class="reqMsg" id="phone_wrong_format">* Phone doesn't match pattern</span><br>
         <span class="reqMsg" id="phone">* Phone is required</span>
         <span class="reqMsg" id="phone_length">* Phone is too short</span><br>
+        <input hidden type="text" name="role_id" value="3" disabled/>
         <input type="submit" value="Submit"/><br>
     </form>
 </div>

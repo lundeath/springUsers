@@ -30,6 +30,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>com.global.model.User</value>
+                <value>com.global.model.Role</value>
             </list>
         </property>
         <property name="hibernateProperties">

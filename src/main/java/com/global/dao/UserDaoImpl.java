@@ -1,6 +1,8 @@
 package com.global.dao;
 
+import com.global.model.Role;
 import com.global.model.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -65,5 +67,14 @@ public class UserDaoImpl implements UserDao{
             logger.info("User list: " + user);
         }
         return userList;
+    }
+
+    @Override
+    public Role getRoleById(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Role role = (Role) session.load(Role.class, id);
+
+        logger.info("Role successfully loaded");
+        return role;
     }
 }

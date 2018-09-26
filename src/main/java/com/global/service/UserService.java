@@ -1,5 +1,6 @@
 package com.global.service;
 
+import com.global.model.Role;
 import com.global.model.User;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface UserService {
     User getUserById(int id);
 
     List<User> listUsers();
+
+    Role getRoleById(int id);
 }
