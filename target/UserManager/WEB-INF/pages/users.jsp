@@ -49,7 +49,7 @@
 <br/>
 <br/>
 
-<h2>Users List</h2>
+<h3>Users List</h3>
 
 <c:if test="${!empty listUsers}">
     <table class="zui-table">
