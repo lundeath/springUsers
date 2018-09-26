@@ -2,11 +2,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="/WEB-INF/TLDs/custom-tag.tld" prefix="m" %>
 <%@ page session="false" %>
 <html>
 <head>
     <title>User Manager</title>
-
+    <m:today/>
     <style>
         form {text-align: center}
         input {

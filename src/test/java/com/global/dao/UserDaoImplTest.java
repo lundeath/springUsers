@@ -24,25 +24,6 @@ public class UserDaoImplTest {
 
 
     @Test
-    public void addUser() {
-        Mockito.doNothing()
-                .when(userDao).addUser(new User());
-
-    }
-
-    @Test
-    public void updateUser() {
-        Mockito.doNothing()
-                .when(userDao).updateUser(new User());
-    }
-
-    @Test
-    public void removeUser() {
-        Mockito.doNothing()
-                .when(userDao).removeUser(4);
-    }
-
-    @Test
     public void getUserById() {
         Mockito.when(userDao.getUserById(2))
                 .thenReturn(new User());
