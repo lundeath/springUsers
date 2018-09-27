@@ -49,6 +49,23 @@
 
 <br/>
 <br/>
+<%--Here we are getting cookies from request--%>
+<%
+    String name = null;
+    String lastname = null;
+    String sessionID = null;
+    String role = null;
+    Cookie[] cookies = request.getCookies();
+    if(cookies != null){
+        for(Cookie cookie : cookies){
+            if(cookie.getName().equals("username")) name = cookie.getValue();
+            if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+            if(cookie.getName().equals("userrole")) role = cookie.getValue();
+            if(cookie.getName().equals("userlastname")) lastname = cookie.getValue();
+        }
+    }
+%>
+<%=role%>
 
 <h3>Users List</h3>
 
@@ -84,7 +101,9 @@
 
 <br>
 <br>
-<a href="<c:url value='/register'/>">Add another user</a>
+<a href="<c:url value='/register'/>">Add another user  </a>
+<a href="<c:url value='/logout'/>">Logout</a>
+
 
 </body>
 </html>

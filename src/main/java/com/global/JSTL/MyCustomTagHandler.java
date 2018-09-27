@@ -17,7 +17,7 @@ public class MyCustomTagHandler extends TagSupport {
                     "    from {background-color: white;}\n" +
                     "    to {background-color: lightblue;}\n" +
                     "}\n " + "p {\n" +
-                    "    width: 130px;\n" +
+                    "    width: 140px;\n" +
                     "    height: 19px;\n" +
                     "    background-color: lightblue;\n" +
                     "    animation-name: example;\n" +

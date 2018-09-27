@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Login</title>
@@ -13,6 +14,9 @@
     .reqMsg {
         color:red;
         display: none;
+    }
+    .wrongMes {
+        color:red;
     }
     .tg {
         border-collapse: collapse;
@@ -55,18 +59,41 @@
 </head>
 <body>
 <h3>Login</h3>
+<%
 
+    String firstName = null;
+    String lastName = null;
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("username")) firstName = cookie.getValue();
+            if (cookie.getName().equals("userlastname")) lastName = cookie.getValue();
+        }
+    }
+    if(firstName != null && lastName != null){
+        out.print("<style>" +
+                "input[type=text] {\n" +
+                "    background-color: yellow;\n" +
+                "}" +
+                "</style>");
+    }
+%>
 <div>
     <form style="alignment: center" name="loginForm" action="/users/login" method="post" class="tg">
         First name:<br>
-        <input type="text" name="firstName" placeholder="John" data-rule="required"><br>
+        <input type="text" name="firstName" value="<%=firstName%>" placeholder="John" data-rule="required"><br>
         <span class="reqMsg" id="firstN">* First name is required</span><br>
         Last name:<br>
-        <input type="text" name="lastName" placeholder="Stevens" data-rule="required"><br>
+        <input type="text" name="lastName" value="<%=lastName%>" placeholder="Stevens" data-rule="required"><br>
         <span class="reqMsg" id="lastN">* Last name is required</span><br>
         <input type="submit" value="Login"/><br>
     </form>
 </div>
+<c:if test="${wrong == true}">
+    <p class="wrongMes">Wrong credentials. Please, try again.</p>
+</c:if>
+
+
 </body>
 </html>
 

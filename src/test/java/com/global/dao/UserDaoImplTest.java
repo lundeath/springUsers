@@ -4,7 +4,6 @@ import com.global.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
