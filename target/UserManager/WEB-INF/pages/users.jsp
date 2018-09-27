@@ -8,69 +8,21 @@
 <head>
     <title>User Manager</title>
     <m:today/>
-    <style>
-        form {text-align: center}
-        input {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-top: 6px;
-            margin-bottom: 16px;
-        }
-        input[type=submit] {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .zui-table {
-            border: solid 1px #DDEEEE;
-            border-collapse: collapse;
-            border-spacing: 0;
-            font: normal 13px Arial, sans-serif;
-
-
-        }
-        .zui-table thead th {
-            background-color: #DDEFEF;
-            border: solid 1px #DDEEEE;
-            color: #336B6B;
-            padding: 10px;
-            text-align: left;
-            text-shadow: 1px 1px 1px #fff;
-        }
-        .zui-table tbody td {
-            border: solid 1px #DDEEEE;
-            color: #333;
-            padding: 10px;
-            text-shadow: 1px 1px 1px #fff;
-        }
-
-    </style>
+    <a href="<c:url value='/logout'/>" class="button">Logout</a>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/tables.css">
 </head>
 <body>
 
 <br/>
 <br/>
-<%--Here we are getting cookies from request--%>
-<%
-    String name = null;
-    String lastname = null;
-    String sessionID = null;
-    String role = null;
-    Cookie[] cookies = request.getCookies();
-    if(cookies != null){
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("username")) name = cookie.getValue();
-            if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
-            if(cookie.getName().equals("userrole")) role = cookie.getValue();
-            if(cookie.getName().equals("userlastname")) lastname = cookie.getValue();
-        }
-    }
-%>
-<%=role%>
 
-<h3>Users List</h3>
+
 
 <c:if test="${!empty listUsers}">
-    <table class="zui-table">
+<div class="container">
+    <table class="responsive-table">
+        <caption>User Manager</caption>
+        <thead>
         <tr>
             <th width="80">ID</th>
             <th width="120">First Name</th>
@@ -80,29 +32,31 @@
             <th width="120">City</th>
             <th width="120">Phone</th>
             <th width="120">Role</th>
-
         </tr>
+        </thead>
+
         <c:forEach items="${listUsers}" var="user">
             <tr>
-                <td>${user.id}</td>
-                <td><a href="/userdata/${user.id}" target="_blank">${user.firstName}</a></td>
-                <td>${user.lastName}</td>
-                <td>${user.age}</td>
-                <td>${user.email}</td>
-                <td>${user.city}</td>
-                <td>${user.phone}</td>
-                <td>${user.role.name}</td>
+                <td scope="col">${user.id}</td>
+                <td scope="col"><a href="/userdata/${user.id}" target="_blank">${user.firstName}</a></td>
+                <td scope="col">${user.lastName}</td>
+                <td scope="col">${user.age}</td>
+                <td scope="col">${user.email}</td>
+                <td scope="col">${user.city}</td>
+                <td scope="col">${user.phone}</td>
+                <td scope="col">${user.role.name}</td>
                 <td><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
                 <td><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
             </tr>
         </c:forEach>
+        <a href="<c:url value='/register'/>" class="button">Add another user  </a><br>
+
     </table>
 </c:if>
+</div>
+<br>
+<br>
 
-<br>
-<br>
-<a href="<c:url value='/register'/>">Add another user  </a>
-<a href="<c:url value='/logout'/>">Logout</a>
 
 
 </body>

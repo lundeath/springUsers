@@ -15,7 +15,7 @@ public class MyCustomTagHandler extends TagSupport {
             out.print("<style>\n" +
                     "@keyframes example {\n" +
                     "    from {background-color: white;}\n" +
-                    "    to {background-color: lightblue;}\n" +
+                    "    to {background-color: lightgreen;}\n" +
                     "}\n " + "p {\n" +
                     "    width: 140px;\n" +
                     "    height: 19px;\n" +

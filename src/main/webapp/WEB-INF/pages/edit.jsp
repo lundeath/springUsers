@@ -13,78 +13,15 @@
 <html>
 <head>
     <title>Edit User</title>
-    <style type="text/css">
-        .reqMsg {
-            color:red;
-            display: none;
-        }
-        .tg {
-            border-collapse: collapse;
-            border-spacing: 0;
-            border-color: #ccc;
-        }
-
-        .tg td {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-            border-color: #ccc;
-            color: #333;
-            background-color: #fff;
-        }
-
-        .tg th {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-            border-color: #ccc;
-            color: #333;
-            background-color: #f0f0f0;
-        }
-
-        .tg .tg-4eph {
-            background-color: #f9f9f9
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/edit_input.css">
 </head>
 <body>
-<h3>User Details</h3>
 
-<table class="tg">
-    <tr>
-        <th width="80">ID</th>
-        <th width="120">First Name</th>
-        <th width="120">Last Name</th>
-        <th width="120">Age</th>
-        <th width="120">Email</th>
-        <th width="120">City</th>
-        <th width="120">Phone</th>
-    </tr>
-    <tr>
-        <td>${user.id}</td>
-        <td>${user.firstName}</td>
-        <td>${user.lastName}</td>
-        <td>${user.age}</td>
-        <td>${user.email}</td>
-        <td>${user.city}</td>
-        <td>${user.phone}</td>
-    </tr>
-</table>
-<br>
-<br>
 <c:url var="editAction" value='/submitChanges/${user.id}'/>
 
-<div>
-<form:form name="editForm" action="${editAction}" commandName="user" cssClass="tg">
+<div class="container">
+
+<form:form id="contact" name="editForm" action="${editAction}" commandName="user" >
         First name:<br>
         <input type="text" name="firstName" placeholder="John" value="<c:out value='${user.firstName}'/>"
                data-rule="required"><br>
@@ -102,7 +39,7 @@
                data-rule="required email"><br>
         <span class="reqMsg" id="email_wrong_format">* Email doesn't match pattern</span><br>
         <span class="reqMsg" id="email">* Email is required</span><br>
-        City:
+        City:<br>
         <select name="city" data-rule="required">
             <option selected value="<c:out value='${user.city}'/>"><c:out value='${user.city}'/></option>
             <option value="Lviv">Lviv</option>
@@ -115,7 +52,8 @@
         <span class="reqMsg" id="phone_wrong_format">* Phone doesn't match pattern</span><br>
         <span class="reqMsg" id="phone">* Phone is required</span>
         <span class="reqMsg" id="phone_length">* Phone is too short</span><br>
-        <input type="submit" value="Submit"/><br>
+    <input type="text" hidden name="role_id" disabled value="${user.role.id}"/><br>
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit changes</button>
 </form:form>
 </div>
 

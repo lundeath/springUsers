@@ -7,7 +7,6 @@ import java.util.Set;
 @Table(name = "roles")
 public class Role {
     @Id
-    @GeneratedValue
     @Column(name = "id")
     private int id;
     @Column(name = "name")
@@ -18,6 +17,10 @@ public class Role {
     private Set<User> users;
 
     public Role() {
+    }
+
+    public Role(int id) {
+        this.id = id;
     }
 
     public int getId() {

@@ -2,7 +2,6 @@ package com.global.controller;
 
 import com.global.model.User;
 import com.global.service.UserService;
-import com.global.utils.Scrambler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

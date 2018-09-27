@@ -10,59 +10,12 @@
 <html>
 <head>
     <title>Login</title>
-<style>
-    .reqMsg {
-        color:red;
-        display: none;
-    }
-    .wrongMes {
-        color:red;
-    }
-    .tg {
-        border-collapse: collapse;
-        border-spacing: 0;
-        border-color: #ccc;
-    }
-
-    .tg td {
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        padding: 10px 5px;
-        border-style: solid;
-        border-width: 1px;
-        overflow: hidden;
-        word-break: normal;
-        border-color: #ccc;
-        color: #333;
-        background-color: #fff;
-    }
-
-    .tg th {
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        font-weight: normal;
-        padding: 10px 5px;
-        border-style: solid;
-        border-width: 1px;
-        overflow: hidden;
-        word-break: normal;
-        border-color: #ccc;
-        color: #333;
-        background-color: #f0f0f0;
-    }
-
-    .tg .tg-4eph {
-        background-color: #f9f9f9
-    }
-
-</style>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/login_page.css">
 </head>
 <body>
-<h3>Login</h3>
 <%
-
-    String firstName = null;
-    String lastName = null;
+    String firstName = "";
+    String lastName = "";
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
         for (Cookie cookie : cookies) {
@@ -70,27 +23,29 @@
             if (cookie.getName().equals("userlastname")) lastName = cookie.getValue();
         }
     }
-    if(firstName != null && lastName != null){
+    if(!"".equals(firstName) && !"".equals(lastName)){
         out.print("<style>" +
                 "input[type=text] {\n" +
-                "    background-color: yellow;\n" +
+                "    background-color: #FEF9DB;\n" +
                 "}" +
                 "</style>");
     }
 %>
-<div>
-    <form style="alignment: center" name="loginForm" action="/users/login" method="post" class="tg">
-        First name:<br>
-        <input type="text" name="firstName" value="<%=firstName%>" placeholder="John" data-rule="required"><br>
+<div class="login-page">
+    <div class="form">
+    <h3>Login</h3>
+    <form  name="loginForm" action="/users/login" method="post" class="login-form">
+        <input type="text" name="firstName" value="<%=firstName%>" placeholder="First name" data-rule="required"><br>
         <span class="reqMsg" id="firstN">* First name is required</span><br>
-        Last name:<br>
-        <input type="text" name="lastName" value="<%=lastName%>" placeholder="Stevens" data-rule="required"><br>
+        <input type="text" name="lastName" value="<%=lastName%>" placeholder="Last name" data-rule="required"><br>
         <span class="reqMsg" id="lastN">* Last name is required</span><br>
-        <input type="submit" value="Login"/><br>
+        <input type="submit" value="Submit"/><br>
     </form>
+    </div>
 </div>
 <c:if test="${wrong == true}">
-    <p class="wrongMes">Wrong credentials. Please, try again.</p>
+    <c:redirect url="http://localhost:8080/login"/>
+
 </c:if>
 
 

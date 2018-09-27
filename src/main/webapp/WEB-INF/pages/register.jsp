@@ -13,55 +13,13 @@
 <html>
 <head>
     <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/edit_input.css">
 </head>
-<style>
-    .reqMsg {
-        color:red;
-        display: none;
-    }
-    .tg {
-        border-collapse: collapse;
-        border-spacing: 0;
-        border-color: #ccc;
-    }
-
-    .tg td {
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        padding: 10px 5px;
-        border-style: solid;
-        border-width: 1px;
-        overflow: hidden;
-        word-break: normal;
-        border-color: #ccc;
-        color: #333;
-        background-color: #fff;
-    }
-
-    .tg th {
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        font-weight: normal;
-        padding: 10px 5px;
-        border-style: solid;
-        border-width: 1px;
-        overflow: hidden;
-        word-break: normal;
-        border-color: #ccc;
-        color: #333;
-        background-color: #f0f0f0;
-    }
-
-    .tg .tg-4eph {
-        background-color: #f9f9f9
-    }
-
-</style>
 <body>
 <h3>Add User</h3>
 
-<div>
-    <form id="addForm" action="/users/add" method="post" class="tg">
+<div class="container">
+    <form id="contact" action="/users/add" method="post" class="tg">
         First name:<br>
         <input type="text" name="firstName" placeholder="John" data-rule="required"><br>
         <span class="reqMsg" id="firstN">* First name is required</span><br>
@@ -75,7 +33,7 @@
         <input type="text" name="email" placeholder="email@example.com" data-rule="required email"><br>
         <span class="reqMsg" id="email_wrong_format">* Email doesn't match pattern</span><br>
         <span class="reqMsg" id="email">* Email is required</span><br>
-        City:
+        City:<br>
         <select name="city" data-rule="required">
             <option selected value="Lviv">Lviv</option>
             <option value="Kyiv">Kyiv</option>
@@ -88,7 +46,7 @@
         <span class="reqMsg" id="phone">* Phone is required</span>
         <span class="reqMsg" id="phone_length">* Phone is too short</span><br>
         <input hidden type="text" name="role_id" value="3" disabled/>
-        <input type="submit" value="Submit"/><br>
+        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
     </form>
 </div>
 
