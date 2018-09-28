@@ -10,6 +10,7 @@
     <m:today/>
     <a href="<c:url value='/logout'/>" class="button">Logout</a>
     <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/tables.css">
+
 </head>
 <body>
 
@@ -20,16 +21,16 @@
 
 <c:if test="${!empty listUsers}">
 <div class="container">
-    <table class="responsive-table">
+    <table id="users" class="responsive-table">
         <caption>User Manager</caption>
         <thead>
         <tr>
             <th width="80">ID</th>
             <th width="120">First Name</th>
-            <th width="120">Last Name</th>
+            <th style="cursor: pointer" onclick="sortTable(2)" width="120">Last Name</th>
             <th width="120">Age</th>
             <th width="120">Email</th>
-            <th width="120">City</th>
+            <th style="cursor: pointer" onclick="sortTable(5)" width="120">City</th>
             <th width="120">Phone</th>
             <th width="120">Role</th>
         </tr>
@@ -61,5 +62,5 @@
 
 </body>
 </html>
-
+<script src="js/sorting.js" defer></script>
 

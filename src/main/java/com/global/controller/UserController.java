@@ -2,6 +2,7 @@ package com.global.controller;
 
 import com.global.model.User;
 import com.global.service.UserService;
+import com.global.utils.Scrambler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -27,8 +28,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-        public String logout(@ModelAttribute("user") User user,HttpServletRequest request,
-                             HttpServletResponse response) {
+    public String logout(@ModelAttribute("user") User user, HttpServletRequest request,
+                         HttpServletResponse response) {
 
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -41,6 +42,7 @@ public class UserController {
 
         return "redirect:/login";
     }
+
     @RequestMapping(value = "users", method = RequestMethod.GET)
     public String listUsers(Model model) {
         model.addAttribute("user", new User());
@@ -128,7 +130,9 @@ public class UserController {
 
                 Cookie username = new Cookie("username", request.getParameter("firstName"));
                 Cookie userrole = new Cookie("userrole", u.getRole().getName());
-                Cookie userlastname = new Cookie("userlastname", request.getParameter("lastName"));
+                //encrypting last name
+                String lastNameCrypted = Scrambler.base64encode(request.getParameter("lastName"));
+                Cookie userlastname = new Cookie("userlastname", lastNameCrypted);
                 username.setDomain("localhost");
                 userrole.setDomain("localhost");
                 userlastname.setDomain("localhost");
@@ -137,6 +141,8 @@ public class UserController {
                 userlastname.setPath("/");
                 response.addCookie(username);
                 response.addCookie(userrole);
+
+
                 response.addCookie(userlastname);
 
                 return "redirect:/users";

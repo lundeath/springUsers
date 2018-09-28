@@ -12,6 +12,12 @@
   color:red;
   display: none;
 }
+th {
+  cursor: pointer;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
 body {
   font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   color: #5e5d52;

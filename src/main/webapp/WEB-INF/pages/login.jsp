@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.global.utils.Scrambler" %><%--
   Created by IntelliJ IDEA.
   User: yurii.ukrainets
   Date: 9/26/2018
@@ -23,7 +23,9 @@
             if (cookie.getName().equals("userlastname")) lastName = cookie.getValue();
         }
     }
-    if(!"".equals(firstName) && !"".equals(lastName)){
+    //decrypting last name
+    String lastNameDecoded = Scrambler.base64decode(lastName);
+    if(!"".equals(firstName) && !"".equals(lastNameDecoded)){
         out.print("<style>" +
                 "input[type=text] {\n" +
                 "    background-color: #FEF9DB;\n" +
@@ -37,7 +39,7 @@
     <form  name="loginForm" action="/users/login" method="post" class="login-form">
         <input type="text" name="firstName" value="<%=firstName%>" placeholder="First name" data-rule="required"><br>
         <span class="reqMsg" id="firstN">* First name is required</span><br>
-        <input type="text" name="lastName" value="<%=lastName%>" placeholder="Last name" data-rule="required"><br>
+        <input type="text" name="lastName" value="<%=lastNameDecoded%>" placeholder="Last name" data-rule="required"><br>
         <span class="reqMsg" id="lastN">* Last name is required</span><br>
         <input type="submit" value="Submit"/><br>
     </form>
