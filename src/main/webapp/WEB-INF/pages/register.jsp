@@ -45,7 +45,11 @@
         <span class="reqMsg" id="phone_wrong_format">* Phone doesn't match pattern</span><br>
         <span class="reqMsg" id="phone">* Phone is required</span>
         <span class="reqMsg" id="phone_length">* Phone is too short</span><br>
-        <input hidden type="text" name="role_id" value="3" disabled/>
+        User permissions:<br>
+        <input type="radio" name="role_id" data-rule="required" value=1>Admin<br>
+        <input type="radio" name="role_id" data-rule="required" value=2>SuperUser<br>
+        <input type="radio" name="role_id" data-rule="required" value=3 checked>User<br>
+        <br>
         <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
     </form>
 </div>

@@ -26,7 +26,7 @@ public class User {
     private String phone;
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
-    private Role role = new Role(3);
+    private Role role;
 
     public User() {
     }

@@ -21,7 +21,7 @@
 
 <div class="container">
 
-<form:form id="contact" name="editForm" action="${editAction}" commandName="user" >
+    <form:form id="contact" name="editForm" action="${editAction}" commandName="user">
         First name:<br>
         <input type="text" name="firstName" placeholder="John" value="<c:out value='${user.firstName}'/>"
                data-rule="required"><br>
@@ -52,9 +52,13 @@
         <span class="reqMsg" id="phone_wrong_format">* Phone doesn't match pattern</span><br>
         <span class="reqMsg" id="phone">* Phone is required</span>
         <span class="reqMsg" id="phone_length">* Phone is too short</span><br>
-    <input type="text" hidden name="role_id" disabled value="${user.role.id}"/><br>
-    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit changes</button>
-</form:form>
+        User permissions:<br>
+        <input type="radio" name="role_id" data-rule="required" value=1>Admin<br>
+        <input type="radio" name="role_id" data-rule="required" value=2>SuperUser<br>
+        <input type="radio" name="role_id" data-rule="required" value=3 checked>User<br>
+        <br>
+        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit changes</button>
+    </form:form>
 </div>
 
 </body>
@@ -87,29 +91,32 @@
 
     function showErrors(arr) {
         for (var i = 0; i < arr.length; i++) {
-            if(arr[i].name === "firstName" && arr[i].error === "required"){
+            if (arr[i].name === "firstName" && arr[i].error === "required") {
                 document.getElementById("firstN").style.display = "inline";
             }
-            if(arr[i].name === "lastName" && arr[i].error === "required"){
+            if (arr[i].name === "lastName" && arr[i].error === "required") {
                 document.getElementById("lastN").style.display = "inline";
             }
-            if(arr[i].name === "age" && arr[i].error === "required"){
+            if (arr[i].name === "age" && arr[i].error === "required") {
                 document.getElementById("age").style.display = "inline";
             }
-            if(arr[i].name === "email" && arr[i].error === "required"){
+            if (arr[i].name === "email" && arr[i].error === "required") {
                 document.getElementById("email").style.display = "inline";
             }
-            if(arr[i].name === "email" && arr[i].error === "email"){
+            if (arr[i].name === "email" && arr[i].error === "email") {
                 document.getElementById("email_wrong_format").style.display = "inline";
             }
-            if(arr[i].name === "phone" && arr[i].error === "required"){
+            if (arr[i].name === "phone" && arr[i].error === "required") {
                 document.getElementById("phone").style.display = "inline";
             }
-            if(arr[i].name === "phone" && arr[i].error === "phone"){
+            if (arr[i].name === "phone" && arr[i].error === "phone") {
                 document.getElementById("phone_wrong_format").style.display = "inline";
             }
-            if(arr[i].name === "phone" && arr[i].error === "length"){
+            if (arr[i].name === "phone" && arr[i].error === "length") {
                 document.getElementById("phone_length").style.display = "inline";
+            }
+            if (arr[i].name === "role_id" && arr[i].error === "required") {
+                document.getElementById("role_id").style.display = "inline";
             }
         }
     }

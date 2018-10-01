@@ -1,5 +1,6 @@
 package com.global.controller;
 
+import com.global.model.Role;
 import com.global.model.User;
 import com.global.service.UserService;
 import com.global.utils.Scrambler;
@@ -52,8 +53,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUser(@ModelAttribute("user") User user, HttpServletRequest request) {
         if (user.getId() == 0) {
+            user.setRole(new Role(Integer.parseInt(request.getParameter("role_id"))));
             this.userService.addUser(user);
         } else {
             this.userService.updateUser(user);
@@ -78,7 +80,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/submitChanges/{id}", method = RequestMethod.POST)
-    public String submitChanges(@PathVariable("id") int id, @ModelAttribute("user") User user) {
+    public String submitChanges(@PathVariable("id") int id, @ModelAttribute("user") User user,
+                                HttpServletRequest request) {
+        user.setRole(new Role(Integer.parseInt(request.getParameter("role_id"))));
         this.userService.updateUser(user);
 
         return "redirect:/users";
