@@ -10,12 +10,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
+@PrepareForTest(UserDaoImpl.class)
 public class UserDaoImplTest {
 
     @Mock

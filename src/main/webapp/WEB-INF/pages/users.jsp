@@ -27,10 +27,10 @@
         <tr>
             <th width="80">ID</th>
             <th width="120">First Name</th>
-            <th style="cursor: pointer" onclick="sortTable(2)" width="120">Last Name</th>
+            <th style="cursor: pointer" onclick="sortTable(2)" width="120">Last Name &#8597</th>
             <th width="120">Age</th>
             <th width="120">Email</th>
-            <th style="cursor: pointer" onclick="sortTable(5)" width="120">City</th>
+            <th style="cursor: pointer" onclick="sortTable(5)" width="120">City &#8597</th>
             <th width="120">Phone</th>
             <th width="120">Role</th>
         </tr>

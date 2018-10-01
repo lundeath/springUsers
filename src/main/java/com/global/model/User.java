@@ -31,6 +31,15 @@ public class User {
     public User() {
     }
 
+    public User(String firstName, String lastName, int age, String email, String city, String phone, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.city = city;
+        this.phone = phone;
+        this.role = role;
+    }
 
     public int getId() {
         return id;
