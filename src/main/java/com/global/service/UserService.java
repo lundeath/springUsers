@@ -16,5 +16,5 @@ public interface UserService {
 
     List<User> listUsers();
 
-    Role getRoleById(int id);
+    User findByFirstName(String firstName);
 }

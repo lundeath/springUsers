@@ -18,14 +18,14 @@ public class MyCustomTagHandler extends TagSupport {
                     "    to {background-color: lightgreen;}\n" +
                     "}\n " + "p {\n" +
                     "    width: 140px;\n" +
-                    "    height: 19px;\n" +
+                    "    height: 50px;\n" +
                     "    background-color: lightblue;\n" +
                     "    animation-name: example;\n" +
                     "    animation-duration: 2s;\n" +
                     "    animation-iteration-count: infinite;\n" +
-                    "} </style> \n" +
-                    "<p>\n " + "Current time " + calendar.get(Calendar.HOUR_OF_DAY) +
-                    ":" + calendar.get(Calendar.MINUTE)  + "</p>");
+                    "} " +
+                    " </style> \n" +
+                    "<p>\n "  + calendar.getTime()  + "</p>");
 
         } catch (Exception e) {
             System.out.println(e);

@@ -8,8 +8,8 @@ import java.io.UnsupportedEncodingException;
 
 public final class Scrambler {
     private static final String DEFAULT_ENCODING = "UTF-8";
-    static BASE64Encoder enc = new BASE64Encoder();
-    static BASE64Decoder dec = new BASE64Decoder();
+    private static BASE64Encoder enc = new BASE64Encoder();
+    private static BASE64Decoder dec = new BASE64Decoder();
 
     public static String base64encode(String text) {
         try {

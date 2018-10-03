@@ -21,12 +21,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserController {
     private UserService userService;
-
     @Autowired
     @Qualifier(value = "userService")
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
+
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(@ModelAttribute("user") User user, HttpServletRequest request,

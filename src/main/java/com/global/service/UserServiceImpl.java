@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    @Transactional
-    public Role getRoleById(int id) {
-        return this.userDao.getRoleById(id);
+    public User findByFirstName(String firstName) {
+        return null;
     }
+
 }

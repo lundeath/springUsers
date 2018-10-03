@@ -8,6 +8,7 @@
 
     <context:component-scan base-package="com.global"/>
 
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
@@ -42,7 +43,6 @@
         </property>
     </bean>
 
-    <!--BookDao and BookService beans-->
     <bean id="userDao" class="com.global.dao.UserDaoImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
@@ -51,7 +51,8 @@
         <property name="userDao" ref="userDao"/>
     </bean>
 
-    <context:component-scan base-package="com.global"/>
+
+
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 

@@ -69,12 +69,5 @@ public class UserDaoImpl implements UserDao{
         return userList;
     }
 
-    @Override
-    public Role getRoleById(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
-        Role role = (Role) session.load(Role.class, id);
 
-        logger.info("Role successfully loaded");
-        return role;
-    }
 }

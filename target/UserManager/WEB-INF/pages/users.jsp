@@ -8,31 +8,34 @@
 <head>
     <title>User Manager</title>
     <m:today/>
-    <a href="<c:url value='/logout'/>" class="button">Logout</a>
-    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/tables.css">
 
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/tables.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="js/sorting.js" defer></script>
+    <script src="js/dropList.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<a href="<c:url value='/logout'/>" class="btn btn-info">Logout</a>
 <br/>
 <br/>
-
 
 
 <c:if test="${!empty listUsers}">
-<div class="container">
-    <table id="users" class="responsive-table">
-        <caption>User Manager</caption>
+<div>
+    <table id="users" class="table table-striped">
         <thead>
         <tr>
-            <th width="80">ID</th>
-            <th width="120">First Name</th>
-            <th style="cursor: pointer" onclick="sortTable(2)" width="120">Last Name &#8597</th>
-            <th width="120">Age</th>
-            <th width="120">Email</th>
-            <th style="cursor: pointer" onclick="sortTable(5)" width="120">City &#8597</th>
-            <th width="120">Phone</th>
-            <th width="120">Role</th>
+            <th >ID</th>
+            <th >First Name</th>
+            <th style="cursor: pointer" onclick="sortTable(2)">Last Name &#8597</th>
+            <th >Age</th>
+            <th >Email</th>
+            <th style="cursor: pointer" onclick="sortTable(5)">City &#8597</th>
+            <th >Phone</th>
+            <th >Role</th>
         </tr>
         </thead>
 
@@ -50,17 +53,18 @@
                 <td><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
             </tr>
         </c:forEach>
-        <a href="<c:url value='/register'/>" class="button">Add another user  </a><br>
 
     </table>
-</c:if>
-</div>
-<br>
-<br>
+    <button id="showMore" class="btn btn-secondary" onclick="showMore()">Show more</button>
+    </c:if>
+    <a href="<c:url value='/register'/>" class="btn btn-success">Add another user </a><br>
 
+</div>
+
+<br>
+<br>
 
 
 </body>
 </html>
-<script src="js/sorting.js" defer></script>
 
