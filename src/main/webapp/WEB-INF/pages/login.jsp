@@ -5,6 +5,7 @@
   Time: 2:09 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -35,13 +36,13 @@
 %>
 <div class="login-page">
     <div class="form">
-    <h3>Login</h3>
+    <h3><spring:message code="login"/> </h3>
     <form  name="loginForm" action="/users/login" method="post" class="login-form">
         <input type="text" name="firstName" value="<%=firstName%>" placeholder="First name" data-rule="required"><br>
         <span class="reqMsg" id="firstN">* First name is required</span><br>
         <input type="text" name="lastName" value="<%=lastNameDecoded%>" placeholder="Last name" data-rule="required"><br>
         <span class="reqMsg" id="lastN">* Last name is required</span><br>
-        <input type="submit" value="Submit"/><br>
+        <input type="submit" value=<spring:message code="submit"/>>
     </form>
     </div>
 </div>

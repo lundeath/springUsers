@@ -12,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Edit User</title>
+    <title><spring:message code="edit"/></title>
     <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/edit_input.css">
 </head>
 <body>
@@ -22,42 +22,37 @@
 <div class="container">
 
     <form:form id="contact" name="editForm" action="${editAction}" commandName="user">
-        First name:<br>
-        <input type="text" name="firstName" placeholder="John" value="<c:out value='${user.firstName}'/>"
-               data-rule="required"><br>
+        <spring:message code="first_name"/>:<br>
+        <input type="text" name="firstName" placeholder="John" data-rule="required"><br>
         <span class="reqMsg" id="firstN">* First name is required</span><br>
-        Last name:<br>
-        <input type="text" name="lastName" placeholder="Stevens" value="<c:out value='${user.lastName}'/>"
-               data-rule="required"><br>
+        <spring:message code="last_name"/>:<br>
+        <input type="text" name="lastName" placeholder="Stevens" data-rule="required"><br>
         <span class="reqMsg" id="lastN">* Last name is required</span><br>
-        Age:<br>
-        <input type="number" name="age" placeholder="25" value="<c:out value='${user.age}'/>"
-               data-rule="required"><br>
+        <spring:message code="age"/>:<br>
+        <input type="number" name="age" placeholder="25" data-rule="required"><br>
         <span class="reqMsg" id="age">* Age is required</span><br>
-        Email:<br>
-        <input type="text" name="email" placeholder="email@example.com" value="<c:out value='${user.email}'/>"
-               data-rule="required email"><br>
+        <spring:message code="email"/>:<br>
+        <input type="text" name="email" placeholder="email@example.com" data-rule="required email"><br>
         <span class="reqMsg" id="email_wrong_format">* Email doesn't match pattern</span><br>
         <span class="reqMsg" id="email">* Email is required</span><br>
-        City:<br>
+        <spring:message code="city"/>:<br>
         <select name="city" data-rule="required">
-            <option selected value="<c:out value='${user.city}'/>"><c:out value='${user.city}'/></option>
-            <option value="Lviv">Lviv</option>
-            <option value="Kyiv">Kyiv</option>
-            <option value="Kharkiv">Kharkiv</option>
+        <option selected value="Lviv"><spring:message code="city.Lviv"/></option>
+        <option value="Kyiv"><spring:message code="city.Kyiv"/></option>
+        <option value="Kharkiv"><spring:message code="city.Kharkiv"/></option>
         </select><br><br>
-        Phone:<br>
+        <spring:message code="phone"/>:<br>
         <input type="text" name="phone" placeholder="+38(063)1234567"
-               value="<c:out value='${user.phone}'/>" data-rule="required phone length" maxlength="13"><br>
+        value="+38" data-rule="required phone length" maxlength="13"><br>
         <span class="reqMsg" id="phone_wrong_format">* Phone doesn't match pattern</span><br>
         <span class="reqMsg" id="phone">* Phone is required</span>
         <span class="reqMsg" id="phone_length">* Phone is too short</span><br>
-        User permissions:<br>
+        <spring:message code="permissions"/>:<br>
         <input type="radio" name="role_id" data-rule="required" value=1>Admin<br>
         <input type="radio" name="role_id" data-rule="required" value=2>SuperUser<br>
         <input type="radio" name="role_id" data-rule="required" value=3 checked>User<br>
         <br>
-        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit changes</button>
+        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending"><spring:message code="submit"/></button>
     </form:form>
 </div>
 

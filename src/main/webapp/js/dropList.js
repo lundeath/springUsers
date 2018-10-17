@@ -12,7 +12,7 @@ function showLess() {
         }
         isShown = false;
         button.setAttribute( "onClick", "showMore()" );
-        button.innerText = "Show more";
+        button.innerText = "🢃";
     } else {
         button.style.display = "none";
     }
@@ -26,6 +26,6 @@ function showMore() {
         }
     }
     button.setAttribute( "onClick", "showLess()" );
-    button.innerText = "Show less";
+    button.innerText = "🢁";
     isShown = true;
 }

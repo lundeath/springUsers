@@ -8,6 +8,23 @@
 
     <context:component-scan base-package="com.global"/>
 
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>users</value>
+            </list>
+        </property>
+    </bean>
+    <mvc:interceptors>
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang"/>
+    </bean>
+    </mvc:interceptors>
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en" />
+    </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
@@ -21,7 +38,7 @@
         <property name="url"
                   value="jdbc:mysql://localhost:3306/usermvc"/>
         <property name="username" value="root"/>
-        <property name="password" value="1234"/>
+        <property name="password" value="root"/>
     </bean>
 
     <!-- Hibernate 4 SessionFactory Bean definition -->

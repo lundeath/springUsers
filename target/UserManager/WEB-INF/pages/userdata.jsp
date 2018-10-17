@@ -3,10 +3,11 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
+<%@ page pageEncoding="UTF-8" %>
 
 <html>
 <head>
-  <title>UserData</title>
+  <title><spring:message code="userdata"/></title>
 
   <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/tables.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -19,12 +20,12 @@
   <table class="table table-bordered">
   <tr>
     <th width="80">ID</th>
-    <th width="120">First Name</th>
-    <th width="120">Last Name</th>
-    <th width="120">Age</th>
-    <th width="120">Email</th>
-    <th width="120">City</th>
-    <th width="120">Phone</th>
+    <th width="120"><spring:message code="first_name"/></th>
+    <th width="120"><spring:message code="last_name"/></th>
+    <th width="120"><spring:message code="age"/></th>
+    <th width="120"><spring:message code="email"/></th>
+    <th width="120"><spring:message code="city"/></th>
+    <th width="120"><spring:message code="phone"/></th>
   </tr>
   <tr>
     <td>${user.id}</td>
